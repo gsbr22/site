@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGenCorp - Le Guide du Footballeur</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Palette de couleurs */
+        :root {
+            --dark-brown: #3F2A35;
+            --light-brown: #D8CBB4;
+            --teal: #8BBDBD;
+            --light-gray: #F3F1F1;
+            --dark-gray: #3F373C;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-brown);
+            font-weight: 500;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--teal);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--teal);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .btn:hover {
+            background-color: var(--dark-brown);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--light-brown) 100%);
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--dark-brown);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--dark-gray);
+        }
+        
+        /* Ebooks Section */
+        .ebooks {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark-brown);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .section-title p {
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 15px auto 0;
+        }
+        
+        .ebooks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .ebook-card {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            border: 1px solid var(--light-brown);
+            position: relative;
+        }
+        
+        .ebook-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .ebook-image {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .ebook-info {
+            padding: 20px;
+        }
+        
+        .ebook-info h3 {
+            margin-bottom: 10px;
+            color: var(--dark-brown);
+        }
+        
+        .ebook-info p {
+            color: var(--dark-gray);
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .price {
+            font-weight: 700;
+            color: var(--teal);
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .coming-soon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--dark-brown);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        /* Feedback Section */
+        .feedback {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+        }
+        
+        .feedback-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--light-brown);
+        }
+        
+        .feedback-form h3 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: var(--dark-brown);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: var(--dark-brown);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--light-brown);
+            border-radius: 5px;
+            background-color: white;
+        }
+        
+        .form-group textarea {
+            height: 100px;
+        }
+        
+        .rating-stars {
+            display: flex;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        
+        .rating-stars i {
+            font-size: 24px;
+            color: var(--light-brown);
+            cursor: pointer;
+            transition: color 0.2s;
+            margin: 0 5px;
+        }
+        
+        .rating-stars i.active {
+            color: var(--teal);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* Reviews Section */
+        .reviews {
+            max-width: 800px;
+            margin: 30px auto 0;
+        }
+        
+        .review-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid var(--light-brown);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        
+        .review-author {
+            font-weight: bold;
+            color: var(--dark-brown);
+        }
+        
+        .review-rating {
+            color: var(--teal);
+        }
+        
+        /* About Page Styles */
+        .about {
+            padding: 120px 0 80px;
+            background-color: white;
+        }
+        
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .about h2 {
+            color: var(--dark-brown);
+            margin-bottom: 30px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        
+        .about p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .about ul {
+            margin: 20px 0 30px;
+            padding-left: 20px;
+        }
+        
+        .about li {
+            margin-bottom: 10px;
+        }
+        
+        /* Contact Page Styles */
+        .contact {
+            padding: 120px 0 80px;
+            background-color: var(--light-gray);
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--light-brown);
+        }
+        
+        .contact-info {
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        /* Legal Page Styles */
+        .legal {
+            padding: 120px 0 80px;
+            background-color: white;
+        }
+        
+        .legal-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .legal h2 {
+            color: var(--dark-brown);
+            margin: 30px 0 20px;
+            text-transform: uppercase;
+        }
+        
+        .legal h3 {
+            color: var(--dark-brown);
+            margin: 25px 0 15px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(135deg, var(--dark-brown) 0%, var(--dark-gray) 100%);
+            color: white;
+        }
+        
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .btn-light {
+            background-color: white;
+            color: var(--dark-brown);
+        }
+        
+        .btn-light:hover {
+            background-color: var(--light-gray);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-gray);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            color: var(--teal);
+            text-transform: uppercase;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--teal);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: var(--light-brown);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--light-brown);
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--teal);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid var(--light-brown);
+            color: var(--light-brown);
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">
+                    <img src="nextlogo.png" alt="NextGenCorp Logo">
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="about.html">À propos</a></li>
+                    <li><a href="index.html#ebooks">Ebooks</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="https://gsbr22.github.io/loginnextgen/" class="btn">Connexion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Page Content -->
+        <div id="home-page">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="container">
+                    <img src="nextlogo2.png" alt="NextGenCorp Logo" style="height: 80px; margin-bottom: 20px;">
+                    <h1>Le Guide du Footballeur</h1>
+                    <p>L'ebook ultime pour les passionnés de football qui veulent améliorer leur jeu et comprendre les coulisses du sport roi.</p>
+                    <a href="#ebooks" class="btn">Découvrir l'ebook</a>
+                </div>
+            </section>
+
+            <!-- Ebooks Section -->
+            <section class="ebooks" id="ebooks">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Notre collection d'ebooks</h2>
+                        <p>Découvrez notre sélection d'ebooks pour passionnés de football.</p>
+                    </div>
+                    <div class="ebooks-grid">
+                        <!-- Ebook 1 -->
+                        <div class="ebook-card">
+                            <div class="ebook-image" style="background-image: url('guide_footballeur.png');"></div>
+                            <div class="ebook-info">
+                                <h3>Le Guide du Footballeur</h3>
+                                <p>L'essentiel pour progresser dans tous les aspects du football moderne.</p>
+                                <div class="price">16,99 €</div>
+                                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                                    <input type="hidden" name="cmd" value="_s-xclick">
+                                    <input type="hidden" name="hosted_button_id" value="VOTRE_ID_BOUTON_PAYPAL">
+                                    <button type="submit" class="btn">Acheter maintenant</button>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- Ebook 2 (Coming Soon) -->
+                        <div class="ebook-card">
+                            <div class="coming-soon">Bientôt disponible</div>
+                            <div class="ebook-image" style="background-image: url('histoires_enfants.png'); opacity: 0.7;"></div>
+                            <div class="ebook-info">
+                                <h3>Histoires Personnalisées</h3>
+                                <p>Des aventures uniques où votre enfant devient le héros de l'histoire.</p>
+                                <div class="price">À venir</div>
+                                <a href="#" class="btn" style="background-color: #ccc; pointer-events: none;">Bientôt disponible</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Feedback Section -->
+            <section class="feedback" id="feedback">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Donnez votre avis</h2>
+                        <p>Partagez votre expérience avec notre communauté.</p>
+                    </div>
+                    <div class="feedback-form">
+                        <form id="feedbackForm">
+                            <div class="form-group">
+                                <label for="name">Votre nom</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Votre note</label>
+                                <div class="rating-stars" id="ratingStars">
+                                    <i class="far fa-star" data-rating="1"></i>
+                                    <i class="far fa-star" data-rating="2"></i>
+                                    <i class="far fa-star" data-rating="3"></i>
+                                    <i class="far fa-star" data-rating="4"></i>
+                                    <i class="far fa-star" data-rating="5"></i>
+                                </div>
+                                <input type="hidden" id="rating" name="rating" value="0" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="comment">Votre commentaire</label>
+                                <textarea id="comment" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Envoyer l'avis</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Avis initial pour rendre la section visible -->
+                    <div id="reviewsSection">
+                        <div class="section-title" style="margin-top: 50px;">
+                            <h2>Vos avis</h2>
+                            <p>Ce que pensent nos lecteurs.</p>
+                        </div>
+                        <div class="reviews" id="reviewsContainer">
+                            <div class="review-card">
+                                <div class="review-header">
+                                    <span class="review-author">Équipe NextGen</span>
+                                    <span class="review-rating">★★★★★</span>
+                                </div>
+                                <p>"Nous sommes fiers de vous présenter notre premier ebook. N'hésitez pas à partager votre avis !"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CTA Section -->
+            <section class="cta">
+                <div class="container">
+                    <h2>Prêt à améliorer votre jeu ?</h2>
+                    <p>Téléchargez dès maintenant "Le Guide du Footballeur" et faites passer votre football au niveau supérieur.</p>
+                    <a href="#ebooks" class="btn btn-light">Acheter l'ebook</a>
+                </div>
+            </section>
+        </div>
+
+        <!-- About Page Content -->
+        <div id="about-page" class="hidden">
+            <section class="about">
+                <div class="container">
+                    <div class="about-content">
+                        <h2>NextGen Corporation</h2>
+                        <p>Chez NextGen Corporation, notre mission est de vous offrir des produits uniques et personnalisés pour enrichir votre quotidien et celui de vos proches.</p>
+                        
+                        <p>Nous proposons deux types de services :</p>
+                        
+                        <ul>
+                            <li>Des histoires personnalisées pour enfants, conçues sur mesure en fonction de leurs passions, goûts et rêves, afin de créer des souvenirs magiques et uniques.</li>
+                            <li>Des ebooks dédiés au football, destinés aux joueurs et passionnés souhaitant améliorer leurs performances physiques et techniques grâce à des programmes d'entraînement complets et professionnels.</li>
+                        </ul>
+                        
+                        <p>Notre objectif est de vous accompagner dans vos projets et de vous proposer des produits de qualité qui font la différence. Chaque création est réalisée avec soin pour répondre à vos attentes et apporter une vraie valeur ajoutée.</p>
+                        
+                        <p>Merci de faire confiance à NextGen Corporation pour transformer vos idées en réalité.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Contact Page Content -->
+        <div id="contact-page" class="hidden">
+            <section class="contact">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Contactez-nous</h2>
+                        <p>Une question ? Une demande particulière ? Écrivez-nous !</p>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Votre nom</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Votre email</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Sujet</label>
+                                <input type="text" id="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Votre message</label>
+                                <textarea id="message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Envoyer le message</button>
+                        </form>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <p>Vous pouvez également nous contacter directement par email :</p>
+                        <p><a href="mailto:nextgencorp185@gmail.com" style="color: var(--teal);">nextgencorp185@gmail.com</a></p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Legal Page Content -->
+        <div id="legal-page" class="hidden">
+            <section class="legal">
+                <div class="container">
+                    <div class="legal-content">
+                        <h2>Mentions légales</h2>
+                        
+                        <h3>Éditeur du site</h3>
+                        <p>NextGen Corporation</p>
+                        <p>Email : nextgencorp185@gmail.com</p>
+                        
+                        <h3>Hébergement</h3>
+                        <p>GitHub Pages</p>
+                        
+                        <h3>Propriété intellectuelle</h3>
+                        <p>Tous les éléments du site (textes, images, logos) sont la propriété exclusive de NextGen Corporation et sont protégés par les lois sur la propriété intellectuelle.</p>
+                        
+                        <h3>Données personnelles</h3>
+                        <p>Les informations recueillies font l'objet d'un traitement informatique destiné à la gestion des commandes et de la relation client. Conformément à la loi "informatique et libertés", vous pouvez exercer votre droit d'accès aux données vous concernant et les faire rectifier.</p>
+                        
+                        <h3>Cookies</h3>
+                        <p>Le site n'utilise pas de cookies à des fins de tracking ou publicitaires. Seuls des cookies techniques strictement nécessaires au fonctionnement du site peuvent être utilisés.</p>
+                        
+                        <h3>Conditions générales de vente</h3>
+                        <p>Les produits sont fournis en version numérique uniquement. Après paiement confirmé, vous recevrez un lien de téléchargement valable pour une durée limitée.</p>
+                        <p>Tout achat est définitif et ne donne pas droit à remboursement sauf en cas de problème technique non résolu sous 7 jours.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>NextGenCorp</h3>
+                    <img src="nextlogo.png" alt="NextGenCorp Logo" style="height: 50px; margin-bottom: 15px;">
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/le_guide_du_footballeur/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@nextgencorp" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="mailto:nextgencorp185@gmail.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Navigation</h3>
+                    <ul>
+                        <li><a href="index.html">Accueil</a></li>
+                        <li><a href="about.html">À propos</a></li>
+                        <li><a href="index.html#ebooks">Ebooks</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Informations</h3>
+                    <ul>
+                        <li><a href="legal.html">Mentions légales</a></li>
+                        <li><a href="legal.html#cgv">Conditions générales</a></li>
+                        <li><a href="https://gsbr22.github.io/loginnextgen/">Espace client</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 NextGenCorp. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation entre pages
+        function showPage(pageId) {
+            document.querySelectorAll('main > div').forEach(div => {
+                div.classList.add('hidden');
+            });
+            document.getElementById(pageId).classList.remove('hidden');
+        }
+
+        // Détection de la page active
+        function detectActivePage() {
+            const path = window.location.pathname;
+            const page = path.split("/").pop().replace('.html', '');
+            
+            if (page === 'about') {
+                showPage('about-page');
+                document.title = "À propos - NextGenCorp";
+            } else if (page === 'contact') {
+                showPage('contact-page');
+                document.title = "Contact - NextGenCorp";
+            } else if (page === 'legal') {
+                showPage('legal-page');
+                document.title = "Mentions légales - NextGenCorp";
+            } else {
+                showPage('home-page');
+                document.title = "NextGenCorp - Le Guide du Footballeur";
+            }
+        }
+
+        // Navigation fluide pour la page d'accueil
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Système d'étoiles pour les avis
+        const stars = document.querySelectorAll('#ratingStars i');
+        const ratingInput = document.getElementById('rating');
+        
+        if (stars.length > 0) {
+            stars.forEach(star => {
+                star.addEventListener('click', function() {
+                    const rating = parseInt(this.getAttribute('data-rating'));
+                    ratingInput.value = rating;
+                    
+                    stars.forEach((s, index) => {
+                        if (index < rating) {
+                            s.classList.remove('far');
+                            s.classList.add('fas', 'active');
+                        } else {
+                            s.classList.remove('fas', 'active');
+                            s.classList.add('far');
+                        }
+                    });
+                });
+                
+                star.addEventListener('mouseover', function() {
+                    const hoverRating = parseInt(this.getAttribute('data-rating'));
+                    
+                    stars.forEach((s, index) => {
+                        if (index < hoverRating) {
+                            s.classList.remove('far');
+                            s.classList.add('fas');
+                        } else {
+                            s.classList.remove('fas');
+                            s.classList.add('far');
+                        }
+                    });
+                });
+                
+                star.addEventListener('mouseout', function() {
+                    const currentRating = parseInt(ratingInput.value);
+                    
+                    stars.forEach((s, index) => {
+                        if (index < currentRating) {
+                            s.classList.remove('far');
+                            s.classList.add('fas', 'active');
+                        } else {
+                            s.classList.remove('fas', 'active');
+                            s.classList.add('far');
+                        }
+                    });
+                });
+            });
+        }
+        
+        // Gestion des avis
+        const feedbackForm = document.getElementById('feedbackForm');
+        if (feedbackForm) {
+            feedbackForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (parseInt(ratingInput.value) === 0) {
+                    alert('Veuillez donner une note en cliquant sur les étoiles');
+                    return;
+                }
+                
+                const review = {
+                    name: document.getElementById('name').value,
+                    rating: parseInt(ratingInput.value),
+                    comment: document.getElementById('comment').value,
+                    date: new Date().toLocaleDateString()
+                };
+                
+                // Sauvegarde dans le localStorage
+                const reviews = JSON.parse(localStorage.getItem('ebookReviews')) || [];
+                reviews.push(review);
+                localStorage.setItem('ebookReviews', JSON.stringify(reviews));
+                
+                // Affiche les avis
+                displayReviews(reviews);
+                
+                // Réinitialise le formulaire
+                feedbackForm.reset();
+                stars.forEach(star => {
+                    star.classList.remove('fas', 'active');
+                    star.classList.add('far');
+                });
+                ratingInput.value = '0';
+                
+                alert('Merci pour votre avis !');
+            });
+        }
+        
+        // Affiche les avis
+        function displayReviews(reviews) {
+            const reviewsContainer = document.getElementById('reviewsContainer');
+            if (!reviewsContainer) return;
+            
+            // Garde l'avis initial de l'équipe NextGen
+            reviewsContainer.innerHTML = `
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-author">Équipe NextGen</span>
+                        <span class="review-rating">★★★★★</span>
+                    </div>
+                    <p>"Nous sommes fiers de vous présenter notre premier ebook. N'hésitez pas à partager votre avis !"</p>
+                </div>
+            `;
+            
+            // Ajoute les avis des utilisateurs
+            reviews.forEach(review => {
+                const reviewElement = document.createElement('div');
+                reviewElement.className = 'review-card';
+                reviewElement.innerHTML = `
+                    <div class="review-header">
+                        <span class="review-author">${review.name}</span>
+                        <span class="review-rating">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</span>
+                    </div>
+                    <p>"${review.comment}"</p>
+                `;
+                reviewsContainer.appendChild(reviewElement);
+            });
+        }
+        
+        // Gestion du formulaire de contact
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Merci pour votre message ! Nous vous répondrons dès que possible.');
+                contactForm.reset();
+            });
+        }
+        
+        // Au chargement de la page
+        document.addEventListener('DOMContentLoaded', function() {
+            detectActivePage();
+            
+            // Charge les avis si sur la page d'accueil
+            if (document.getElementById('reviewsContainer')) {
+                const reviews = JSON.parse(localStorage.getItem('ebookReviews')) || [];
+                displayReviews(reviews);
+            }
+        });
+    </script>
+</body>
+</html>
